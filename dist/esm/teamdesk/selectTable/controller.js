@@ -1,0 +1,34 @@
+//Request Handler
+import { RequestHandler } from "../basic-request";
+export class SelectTableController {
+    constructor(baseUrl, apiClient) {
+        this.baseUrl = baseUrl;
+        this.requestHandler = new RequestHandler(apiClient);
+    }
+    createUri(props) {
+        var _a;
+        const url = new URL(this.baseUrl);
+        url.pathname += `/${props.table}/select.json`;
+        (_a = props.column) === null || _a === void 0 ? void 0 : _a.split(";").forEach((item) => url.searchParams.append("column", item));
+        props.filter && url.searchParams.append("filter", props.filter);
+        props.skip && url.searchParams.append("skip", props.skip);
+        props.top && url.searchParams.append("top", props.top);
+        props.sort && url.searchParams.append("sort", props.sort);
+        return url;
+    }
+    getUri(props) {
+        var _a, _b;
+        const shouldInclude = (_b = (_a = props.config) === null || _a === void 0 ? void 0 : _a.includeBaseUrl) !== null && _b !== void 0 ? _b : true;
+        const url = this.createUri(props);
+        return shouldInclude ? url.toString() : url.toString().replace(this.baseUrl, "");
+    }
+    doRequest(props) {
+        const url = this.createUri(props);
+        return this.requestHandler.placeRequest({
+            method: "get",
+            url: url.toString(),
+            requestConfig: props.config
+        });
+    }
+}
+//# sourceMappingURL=controller.js.map
