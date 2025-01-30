@@ -1,6 +1,6 @@
 {
   "name": "@siamf/teamdesk",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A Node.js TeamDesk API client for placing API requests directly to TeamDesk from Node.js. It supports almost all teamdesk api method and query params",
   "homepage": "https://github.com/siamahnaf/teamdesk",
   "main": "dist/cjs/index.js",
