@@ -24,7 +24,7 @@ $ npm i @siamf/teamdesk
 ```javascript
 import { initTeamdesk } from "@siamf/teamdesk";
 
-type Table = "GYM" | "Siam Test";
+type Table = "Table 1" | "Table 2";
 
 const teamdesk = initTeamdesk<Table>({
     baseUrl: "https://teamdesk.net/secure/api/v2", //Teamdesk Base URL
@@ -43,13 +43,13 @@ interface Generated {
 
 //Generate URL
 const url = teamdesk.describeTable.uri({
-    table: "Table Name"
+    table: "Table 1"
 })
 console.log(url);
 
 //Place API Request
 const { data, error } = await teamdesk.describeTable.request<Generated>({
-    table: "Table Name"
+    table: "Table 2"
 });
 
 console.log(data);
