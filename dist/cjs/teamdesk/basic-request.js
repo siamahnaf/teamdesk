@@ -20,7 +20,7 @@ class RequestHandler {
     }
     placeRequest(_a) {
         return __awaiter(this, arguments, void 0, function* ({ method, url, data, requestConfig }) {
-            var _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v;
+            var _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y;
             try {
                 const { data: returnData } = yield this.apiClient.request(Object.assign({ method: method, url: url, data }, ((requestConfig === null || requestConfig === void 0 ? void 0 : requestConfig.contentType) ? {
                     headers: {
@@ -37,6 +37,16 @@ class RequestHandler {
                         }
                     };
                 }
+                if ((_t = returnData === null || returnData === void 0 ? void 0 : returnData[0]) === null || _t === void 0 ? void 0 : _t.error) {
+                    return {
+                        data: undefined,
+                        error: {
+                            code: "FORBIDDEN",
+                            status: 403,
+                            message: `${(_v = (_u = returnData === null || returnData === void 0 ? void 0 : returnData[0]) === null || _u === void 0 ? void 0 : _u.error) === null || _v === void 0 ? void 0 : _v.message}`
+                        }
+                    };
+                }
                 return {
                     data: returnData,
                     error: undefined,
@@ -49,7 +59,7 @@ class RequestHandler {
                         error: {
                             code: e.code,
                             status: e.status,
-                            message: (_u = (_t = e.response) === null || _t === void 0 ? void 0 : _t.data) !== null && _u !== void 0 ? _u : "Something went wrong"
+                            message: (_x = (_w = e.response) === null || _w === void 0 ? void 0 : _w.data) !== null && _x !== void 0 ? _x : "Something went wrong"
                         }
                     };
                 }
@@ -58,7 +68,7 @@ class RequestHandler {
                     error: {
                         code: "UNKNOWN_ERROR",
                         status: 500,
-                        message: (_v = e.message) !== null && _v !== void 0 ? _v : "An unknown error occurred"
+                        message: (_y = e.message) !== null && _y !== void 0 ? _y : "An unknown error occurred"
                     }
                 };
             }

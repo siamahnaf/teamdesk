@@ -37,6 +37,16 @@ export class RequestHandler {
                     }
                 }
             }
+            if (returnData?.[0]?.error) {
+                return {
+                    data: undefined,
+                    error: {
+                        code: "FORBIDDEN",
+                        status: 403,
+                        message: `${returnData?.[0]?.error?.message}`
+                    }
+                }
+            }
             return {
                 data: returnData,
                 error: undefined,
