@@ -14,7 +14,7 @@ export class RequestHandler {
     }
     placeRequest(_a) {
         return __awaiter(this, arguments, void 0, function* ({ method, url, data, requestConfig }) {
-            var _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y;
+            var _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z;
             try {
                 const { data: returnData } = yield this.apiClient.request(Object.assign({ method: method, url: url, data }, ((requestConfig === null || requestConfig === void 0 ? void 0 : requestConfig.contentType) ? {
                     headers: {
@@ -53,7 +53,7 @@ export class RequestHandler {
                         error: {
                             code: e.code,
                             status: e.status,
-                            message: (_x = (_w = e.response) === null || _w === void 0 ? void 0 : _w.data) !== null && _x !== void 0 ? _x : "Something went wrong"
+                            message: (_y = (_x = (_w = e.response) === null || _w === void 0 ? void 0 : _w.data) === null || _x === void 0 ? void 0 : _x.message) !== null && _y !== void 0 ? _y : "Something went wrong"
                         }
                     };
                 }
@@ -62,7 +62,7 @@ export class RequestHandler {
                     error: {
                         code: "UNKNOWN_ERROR",
                         status: 500,
-                        message: (_y = e.message) !== null && _y !== void 0 ? _y : "An unknown error occurred"
+                        message: (_z = e.message) !== null && _z !== void 0 ? _z : "An unknown error occurred"
                     }
                 };
             }

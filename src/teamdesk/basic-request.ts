@@ -58,7 +58,7 @@ export class RequestHandler {
                     error: {
                         code: e.code,
                         status: e.status,
-                        message: e.response?.data ?? "Something went wrong"
+                        message: e.response?.data?.message ?? "Something went wrong"
                     }
                 }
             }
