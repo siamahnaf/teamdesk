@@ -1,4 +1,4 @@
-import { Axios } from "axios";
+import { Xior } from "xior";
 import { SDescribeTable } from "./describeTable/types";
 import { SSelectTable } from "./selectTable/types";
 import { SSelectView } from "./selectView/types";
@@ -22,7 +22,7 @@ export declare class TeamdeskRoot<M> implements STeamdeskRoot<M> {
     private retrieveController;
     private createController;
     private deleteController;
-    constructor(apiClient: Axios, baseUrl: string);
+    constructor(apiClient: Xior, baseUrl: string);
     describeTable: SDescribeTable<M>;
     selectTable: SSelectTable<M>;
     selectView: SSelectView<M>;
@@ -32,5 +32,5 @@ export declare class TeamdeskRoot<M> implements STeamdeskRoot<M> {
     upsert: SCreate<M>;
     delete: SDelete<M>;
 }
-export declare const teamdesk: <M>(apiClient: Axios, baseUrl: string) => TeamdeskRoot<M>;
+export declare const teamdesk: <M>(apiClient: Xior, baseUrl: string) => TeamdeskRoot<M>;
 export {};

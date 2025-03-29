@@ -1,4 +1,4 @@
-import { Axios } from "axios";
+import { Xior } from "xior";
 
 //Tables Types
 import { SDescribeTable } from "./describeTable/types";
@@ -37,7 +37,7 @@ export class TeamdeskRoot<M> implements STeamdeskRoot<M> {
     private deleteController: DeleteController;
 
     //Construct
-    constructor(apiClient: Axios, baseUrl: string) {
+    constructor(apiClient: Xior, baseUrl: string) {
         this.describeTableController = new DescribeTableController(baseUrl, apiClient);
         this.selectTableController = new SelectTableController(baseUrl, apiClient);
         this.selectViewController = new SelectViewController(baseUrl, apiClient);
@@ -96,6 +96,6 @@ export class TeamdeskRoot<M> implements STeamdeskRoot<M> {
 }
 
 //Create Teamdesk
-export const teamdesk = <M>(apiClient: Axios, baseUrl: string): TeamdeskRoot<M> => {
+export const teamdesk = <M>(apiClient: Xior, baseUrl: string): TeamdeskRoot<M> => {
     return new TeamdeskRoot<M>(apiClient, baseUrl);
 }

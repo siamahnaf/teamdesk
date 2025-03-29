@@ -7,20 +7,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import axios from "axios";
+import { isXiorError } from "xior";
 export class RequestHandler {
     constructor(apiClient) {
         this.apiClient = apiClient;
     }
     placeRequest(_a) {
-        return __awaiter(this, arguments, void 0, function* ({ method, url, data, requestConfig }) {
+        return __awaiter(this, arguments, void 0, function* ({ method, url, data, requestConfig = {} }) {
             var _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z;
             try {
-                const { data: returnData } = yield this.apiClient.request(Object.assign({ method: method, url: url, data }, ((requestConfig === null || requestConfig === void 0 ? void 0 : requestConfig.contentType) ? {
-                    headers: {
-                        "Content-Type": requestConfig.contentType,
-                    }
-                } : {})));
+                const { data: returnData } = yield this.apiClient.request(Object.assign({ method: method, url: url, data }, requestConfig));
                 if ((_b = returnData === null || returnData === void 0 ? void 0 : returnData[0]) === null || _b === void 0 ? void 0 : _b.errors) {
                     return {
                         data: undefined,
@@ -47,7 +43,7 @@ export class RequestHandler {
                 };
             }
             catch (e) {
-                if (axios.isAxiosError(e)) {
+                if (isXiorError(e)) {
                     return {
                         data: undefined,
                         error: {

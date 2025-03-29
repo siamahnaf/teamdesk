@@ -1,4 +1,4 @@
-import { Axios } from "axios";
+import { Xior } from "xior";
 import { SDefaultConfig } from "../typing";
 interface Props {
     method: "get" | "post" | "put" | "delete";
@@ -8,22 +8,15 @@ interface Props {
 }
 export declare class RequestHandler {
     private apiClient;
-    constructor(apiClient: Axios);
+    constructor(apiClient: Xior);
     placeRequest({ method, url, data, requestConfig }: Props): Promise<{
-        data: undefined;
-        error: {
-            code: any;
-            status: any;
-            message: string;
-        };
-    } | {
         data: any;
         error: undefined;
     } | {
         data: undefined;
         error: {
-            code: string | undefined;
-            status: number | undefined;
+            code: any;
+            status: any;
             message: any;
         };
     }>;

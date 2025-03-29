@@ -1,6 +1,6 @@
 import { SRetrieveProps } from "./types";
 import { SUriConfig, SRequestConfig } from "../../typing";
-import { Axios } from "axios";
+import { Xior } from "xior";
 
 //Request Handler
 import { RequestHandler } from "../basic-request";
@@ -9,7 +9,7 @@ export class RetrieveController {
     private baseUrl: string;
     private requestHandler: RequestHandler;
 
-    constructor(baseUrl: string, apiClient: Axios) {
+    constructor(baseUrl: string, apiClient: Xior) {
         this.baseUrl = baseUrl;
         this.requestHandler = new RequestHandler(apiClient)
     }

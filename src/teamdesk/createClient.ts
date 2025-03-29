@@ -1,4 +1,4 @@
-import axios from "axios";
+import xior from "xior";
 
 //Root Teamdesk
 import { teamdesk } from "./teamdesk-root";
@@ -14,18 +14,18 @@ interface SProps {
     defaultConfig?: SDefaultConfig;
 }
 
-export const initTeamdesk = <M>({ baseUrl, token, databaseNo, defaultConfig }: SProps) => {
+export const initTeamdesk = <M>({ baseUrl, token, databaseNo, defaultConfig = {} }: SProps) => {
     if (!baseUrl || !token || !databaseNo) {
         throw new Error("Please provide base url, token and database no.")
     }
 
     const sBaseUrl = `${baseUrl.replace(/\/+$/, "")}/${databaseNo}`;
 
-    const apiClient = axios.create({
+    const apiClient = xior.create({
         headers: {
             Authorization: `Bearer ${token}`,
-            "Content-Type": defaultConfig?.contentType,
-        }
+        },
+        ...defaultConfig
     });
 
     return teamdesk<M>(apiClient, sBaseUrl);

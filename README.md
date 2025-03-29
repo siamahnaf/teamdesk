@@ -14,6 +14,7 @@ A Node.js TeamDesk API client for placing API requests directly to TeamDesk from
 - Small Size
 - All Available Teamdesk Method
 - Place request or create URI
+- Edge runtime support
 
 # Installation
 

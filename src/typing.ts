@@ -1,7 +1,8 @@
-export type SContentType = "text/html" | "text/plain" | "multipart/form-data" | "application/json" | "application/x-www-form-urlencoded" | "application/octet-stream";
+export type SResponseType = 'json' | 'text' | 'stream' | 'document' | 'arraybuffer' | 'blob' | 'original' | 'custom';
 
 export type SDefaultConfig = {
-    contentType: SContentType;
+    timeout?: number;
+    responseType?: SResponseType;
 }
 
 export type SUriConfig = {

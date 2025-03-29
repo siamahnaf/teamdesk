@@ -1,4 +1,4 @@
-import axios, { Axios } from "axios";
+import { Xior, isXiorError } from "xior";
 import { SDefaultConfig } from "../typing";
 
 interface Props {
@@ -10,22 +10,18 @@ interface Props {
 }
 
 export class RequestHandler {
-    private apiClient: Axios;
-    constructor(apiClient: Axios) {
+    private apiClient: Xior;
+    constructor(apiClient: Xior) {
         this.apiClient = apiClient;
     }
 
-    async placeRequest({ method, url, data, requestConfig }: Props) {
+    async placeRequest({ method, url, data, requestConfig = {} }: Props) {
         try {
-            const { data: returnData } = await this.apiClient.request({
+            const { data: returnData } = await this.apiClient.request<any>({
                 method: method,
                 url: url,
                 data,
-                ...(requestConfig?.contentType ? {
-                    headers: {
-                        "Content-Type": requestConfig.contentType,
-                    }
-                } : {})
+                ...requestConfig,
             });
             if (returnData?.[0]?.errors) {
                 return {
@@ -52,7 +48,7 @@ export class RequestHandler {
                 error: undefined,
             }
         } catch (e: any) {
-            if (axios.isAxiosError(e)) {
+            if (isXiorError(e)) {
                 return {
                     data: undefined,
                     error: {
